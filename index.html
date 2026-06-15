@@ -13,19 +13,20 @@
     header{background:#1a3c6e;color:#fff;padding:14px 24px}
     header .title{font-size:16px;font-weight:600}
     header .sub{font-size:12px;opacity:.75;margin-top:2px}
-    main{max-width:900px;margin:28px auto;padding:0 16px 48px}
-    select,input[type=date],input[type=number]{font-family:inherit;font-size:14px;padding:8px 10px;border-radius:6px;border:1.5px solid #cbd5e0;background:#fff;color:#1a202c;width:100%;transition:border-color .15s}
+    main{max-width:960px;margin:28px auto;padding:0 16px 48px}
+    select,input[type=date],input[type=number],input[type=text]{font-family:inherit;font-size:14px;padding:8px 10px;border-radius:6px;border:1.5px solid #cbd5e0;background:#fff;color:#1a202c;width:100%;transition:border-color .15s}
     select:focus,input:focus{outline:none;border-color:#1a3c6e}
     button{font-family:inherit;cursor:pointer}
     .card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:20px 22px;margin-bottom:16px}
     .warn{background:#fffbeb;border:1px solid #f6e05e;border-radius:8px;padding:9px 14px;font-size:12px;color:#744210;margin-bottom:14px}
+    .info{background:#e6f6ff;border:1px solid #90cdf4;border-radius:8px;padding:9px 14px;font-size:12px;color:#2c5282;margin-bottom:14px}
     .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
     .grid2{display:grid;grid-template-columns:3fr 2fr;gap:20px}
-    @media(max-width:640px){.grid3,.grid2{grid-template-columns:1fr}}
+    @media(max-width:700px){.grid3,.grid2{grid-template-columns:1fr}}
     label.lbl{display:block;font-size:12px;font-weight:600;color:#4a5568;margin-bottom:5px}
     .btn-p{background:#1a3c6e;color:#fff;border:none;padding:10px 26px;border-radius:8px;font-size:14px;font-weight:600;margin-top:16px}
     .btn-p:hover{background:#153060}
-    .btn-sm{background:#fff;color:#1a202c;border:1.5px solid #cbd5e0;padding:6px 14px;border-radius:7px;font-size:13px;margin-top:10px}
+    .btn-sm{background:#fff;color:#1a202c;border:1.5px solid #cbd5e0;padding:6px 14px;border-radius:7px;font-size:13px;margin-top:10px;margin-right:8px}
     .btn-sm:hover{border-color:#1a3c6e}
     .rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
     @media(max-width:480px){.rgrid{grid-template-columns:1fr}}
@@ -33,24 +34,27 @@
     .rc-lbl{font-size:11px;color:#718096;margin-bottom:4px}
     .rc-val{font-size:20px;font-weight:700}
     .rc-sub{font-size:11px;color:#718096;margin-top:3px}
-    .drow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #edf2f7;font-size:13px}
-    .drow span:first-child{color:#4a5568}
-    .drow span:last-child{font-weight:600}
-    .tab-bar{border-bottom:1px solid #e2e8f0;margin-bottom:16px;display:flex;gap:4px}
-    .tab-btn{padding:8px 20px;border:none;background:transparent;font-size:14px;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;color:#718096}
+    .drow{display:flex;justify-content:space-between;align-items:flex-start;padding:5px 0;border-bottom:1px solid #edf2f7;font-size:13px;gap:10px}
+    .drow span:first-child{color:#4a5568;flex-shrink:0}
+    .drow span:last-child{font-weight:600;text-align:right;word-break:break-word}
+    .tab-bar{border-bottom:1px solid #e2e8f0;margin-bottom:16px;display:flex;gap:4px;flex-wrap:wrap}
+    .tab-btn{padding:8px 16px;border:none;background:transparent;font-size:14px;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;color:#718096}
     .tab-btn.active{border-bottom-color:#1a3c6e;color:#1a3c6e;font-weight:600}
     table.rt{width:100%;border-collapse:collapse;font-size:13px}
-    table.rt th{padding:6px 6px;font-size:11px;font-weight:600;color:#4a5568;border-bottom:1.5px solid #e2e8f0;white-space:nowrap}
-    table.rt td{padding:5px 6px;border-bottom:1px solid #f0f4f8}
-    .ti{width:46px;padding:4px 5px;border:1.5px solid #cbd5e0;border-radius:5px;font-size:12px;text-align:center;background:#fff}
+    table.rt th{padding:6px 4px;font-size:10px;font-weight:600;color:#4a5568;border-bottom:1.5px solid #e2e8f0;white-space:nowrap}
+    table.rt td{padding:5px 4px;border-bottom:1px solid #f0f4f8}
+    .ti{width:42px;padding:4px 3px;border:1.5px solid #cbd5e0;border-radius:5px;font-size:12px;text-align:center;background:#fff}
     .ti:focus{outline:none;border-color:#1a3c6e}
     .badge{padding:3px 10px;border-radius:20px;color:#fff;font-size:11px;font-weight:600;white-space:nowrap}
-    .sel-row{display:flex;align-items:center;gap:10px;max-width:500px}
+    .badge-sm{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:600;background:#fef3c7;color:#854d0e;margin-left:4px}
+    .sel-row{display:flex;align-items:center;gap:10px;max-width:560px;flex-wrap:wrap}
     .obar{font-size:12px;color:#4a5568;padding:7px 12px;background:#f7fafc;border-radius:6px;margin-bottom:10px}
     .err{background:#fff5f5;border:1px solid #fc8181;border-radius:8px;padding:12px 16px;color:#c53030;font-size:13px}
-    .hint{background:#ebf4ff;border-radius:6px;padding:7px 12px;font-size:11px;color:#2b6cb0;margin-bottom:10px}
-    .help{background:#f7fafc;border-radius:8px;padding:10px 14px;font-size:12px;color:#4a5568;margin-top:14px}
+    .hint{background:#ebf4ff;border-radius:6px;padding:7px 12px;font-size:11px;color:#2b6cb0;margin-bottom:10px;line-height:1.5}
+    .variant-row{background:#fefce8}
+    .variant-row td:first-child{padding-left:18px;font-size:11px;color:#854d0e;font-weight:500}
     footer{text-align:center;font-size:11px;color:#a0aec0;margin-top:32px}
+    .formula-display{font-family:"SF Mono",Monaco,monospace;font-size:11px;background:#f7fafc;padding:3px 7px;border-radius:4px;color:#4a5568;display:inline-block}
   </style>
 </head>
 <body>
@@ -59,110 +63,351 @@
   <div class="sub">Syndicat National — Direction Générale des Finances Publiques</div>
 </header>
 <main><div id="root"></div></main>
-<footer>SN CFTC DGFiP · Outil interne · Tables indicatives — à vérifier avec les arrêtés de reclassement en vigueur</footer>
+<footer>SN CFTC DGFiP · Tables conformes aux décrets en vigueur (2021-1834, 2022-1209, 2022-1579, 2023-448) · À vérifier au cas par cas</footer>
 
 <script type="text/babel">
 const { useState, useCallback } = React;
+
+const ONE_YEAR = 365;
+const SIX_MONTHS = 182;
+const SIXTEEN_MONTHS = 487; // 1 an et 4 mois
+const TWO_YEARS = 730;
+const THREE_YEARS = 1095;
+const FOUR_YEARS = 1460;
 
 const daysBetween = (d1,d2) => Math.round((new Date(d2)-new Date(d1))/86400000);
 const addDays = (s,days) => { const d=new Date(s); d.setDate(d.getDate()+Math.round(days)); return d.toLocaleDateString("fr-FR"); };
 const fmt = (j) => {
   if(j===null||j===undefined||isNaN(j)) return "—";
   if(j===0) return "0 jour";
+  const sign = j<0?"-":"";
+  j = Math.abs(j);
   const ans=Math.floor(j/365),mois=Math.floor((j%365)/30),jr=j%365%30;
-  return [ans&&`${ans} an${ans>1?"s":""}`,mois&&`${mois} mois`,jr&&`${jr} j`].filter(Boolean).join(" ");
-};
-const fmtF = (pct,fixe) => {
-  const p=pct>0?`${pct}%`:null, f=fixe>0?`+ ${fmt(fixe)}`:null;
-  return [p,f].filter(Boolean).join(" ") || "0%";
-};
-const calcC = (acq,pct,fixe,duree) => {
-  const raw=Math.floor(acq*pct/100)+(fixe||0);
-  return duree!==null?Math.min(raw,duree):raw;
+  const parts = [ans&&`${ans} an${ans>1?"s":""}`,mois&&`${mois} mois`,jr&&`${jr} j`].filter(Boolean);
+  return sign + (parts.length ? parts.join(" ") : "0 j");
 };
 
+// Formule : conservée = ((acquis - deduction) × pct/100) + fixe
+// le tout clampé entre 0 et la durée de l'échelon de destination
+const calcC = (acq, pct, fixe, deduction, duree) => {
+  const base = Math.max(0, acq - (deduction||0));
+  const raw = Math.floor(base * pct / 100) + (fixe||0);
+  const clamped = Math.max(0, raw);
+  return duree!==null ? Math.min(clamped, duree) : clamped;
+};
+
+const fmtFormule = (pct, fixe, deduction) => {
+  const parts = [];
+  if(deduction > 0 && pct > 0){
+    parts.push(`${pct}% × (acquis − ${fmt(deduction)})`);
+  } else if(pct > 0){
+    parts.push(`${pct}% × acquis`);
+  }
+  if(fixe > 0) parts.push(`+ ${fmt(fixe)}`);
+  if(parts.length === 0) return "Sans ancienneté";
+  return parts.join(" ");
+};
+
+const fmtSeuil = (min, max) => {
+  if(!min && !max) return "tous cas";
+  if(!min && max) return `< ${fmt(max)} d'ancienneté`;
+  if(min && !max) return `≥ ${fmt(min)} d'ancienneté`;
+  return `de ${fmt(min)} à < ${fmt(max)}`;
+};
+
+// ============================================================
+// TABLES OFFICIELLES (issues des PDFs CFTC Finances publiques)
+// ============================================================
+// Chaque ligne : { eo, ed, pct, fixe, deduction, seuilMin, seuilMax, note }
+// Formule : conservée = ((acquis - deduction) × pct/100) + fixe
+
 const GROUPS = [
-  { label:"Catégorie C → B", tables:[
-    { id:"c1_b", label:"C1 (Agent) → Contrôleur (B1)", warn:true,
-      origine:"Agents des finances publiques – Grade C1", destination:"Contrôleurs des finances publiques – Contrôleur",
-      texte:"Décret n°2010-984 du 26 août 2010 – à vérifier",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:0},{eo:3,ed:1,pct:50,fixe:182},{eo:4,ed:2,pct:0,fixe:0},{eo:5,ed:2,pct:50,fixe:0},{eo:6,ed:3,pct:50,fixe:0},{eo:7,ed:3,pct:33,fixe:182},{eo:8,ed:4,pct:0,fixe:0},{eo:9,ed:5,pct:66,fixe:0},{eo:10,ed:6,pct:50,fixe:0},{eo:11,ed:7,pct:100,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:365},{e:4,j:548},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:null}]},
-    { id:"c2_b", label:"C2 (Agent principal) → Contrôleur (B1)", warn:true,
-      origine:"Agents des finances publiques – Grade C2", destination:"Contrôleurs des finances publiques – Contrôleur",
-      texte:"Décret n°2010-984 du 26 août 2010 – à vérifier",
-      rows:[{eo:1,ed:1,pct:100,fixe:0},{eo:2,ed:2,pct:100,fixe:0},{eo:3,ed:3,pct:100,fixe:0},{eo:4,ed:4,pct:0,fixe:0},{eo:5,ed:4,pct:100,fixe:0},{eo:6,ed:5,pct:100,fixe:0},{eo:7,ed:6,pct:100,fixe:0},{eo:8,ed:7,pct:100,fixe:0},{eo:9,ed:8,pct:0,fixe:0},{eo:10,ed:8,pct:0,fixe:0},{eo:11,ed:8,pct:75,fixe:0},{eo:12,ed:9,pct:100,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:365},{e:4,j:548},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:null}]},
-      { id:"c3_b", label:"C3 (Agent principal de 1ère classe) → Contrôleur (B1)", warn:true,
-      origine:"Agents des finances publiques – Grade C3", destination:"Contrôleurs des finances publiques – Contrôleur",
-      texte:"Décret n°2010-984 du 26 août 2010 – à vérifier",
-      rows:[{eo:1,ed:4,pct:100,fixe:0},{eo:2,ed:4,pct:100,fixe:365},{eo:3,ed:5,pct:100,fixe:0},{eo:4,ed:6,pct:100,fixe:0},{eo:5,ed:7,pct:100,fixe:0},{eo:6,ed:8,pct:0,fixe:0},{eo:7,ed:8,pct:60,fixe:0},{eo:8,ed:9,pct:100,fixe:365},{eo:8,ed:10,pct:300,fixe:-730},{eo:9,ed:11,pct:100,fixe:0},{eo:10,ed:12,pct:100,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:365},{e:4,j:548},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:null}]},
+
+  // ============================================================
+  // CATÉGORIE C → C (Décret 2021-1834 du 24/12/2021)
+  // ============================================================
+  { label:"Catégorie C → C (avancement de grade)", tables:[
+
+    { id:"c1_c2", label:"C1 → C2", warn:false,
+      origine:"Agent administratif (C1)",
+      destination:"Agent administratif principal 2e classe (C2)",
+      texte:"Décret n°2021-1834 du 24 décembre 2021 (art. 2)",
+      rows:[
+        {eo:4,ed:2,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:5,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:6,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:7,ed:5,pct:33,fixe:0,deduction:0,seuilMin:0,note:"1/3 ancienneté acquise"},
+        {eo:8,ed:6,pct:33,fixe:0,deduction:0,seuilMin:0,note:"1/3 ancienneté acquise"},
+        {eo:9,ed:7,pct:67,fixe:0,deduction:0,seuilMin:0,note:"2/3 ancienneté acquise"},
+        {eo:10,ed:8,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:11,ed:9,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:1095},{e:8,j:1095},{e:9,j:null}],
+    },
+
+    { id:"c2_c3", label:"C2 → C3", warn:false,
+      origine:"Agent administratif principal 2e classe (C2)",
+      destination:"Agent administratif principal 1ère classe (C3)",
+      texte:"Décret n°2021-1834 du 24 décembre 2021 (art. 2)",
+      rows:[
+        {eo:6,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:7,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:8,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:9,ed:6,pct:67,fixe:0,deduction:0,seuilMin:0,note:"2/3 ancienneté acquise"},
+        {eo:10,ed:7,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:11,ed:7,pct:75,fixe:0,deduction:0,seuilMin:0,note:"3/4 ancienneté acquise"},
+        {eo:12,ed:8,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:null}],
+    },
+
   ]},
+
+  // ============================================================
+  // CATÉGORIE C → B (Décret 2022-1209 du 31/08/2022 — applicable 01/09/2022)
+  // ============================================================
+  { label:"Catégorie C → B (promotion)", tables:[
+
+    { id:"c1_b1", label:"C1 → B1", warn:false,
+      origine:"Agent administratif (C1)",
+      destination:"Contrôleur 2e classe (B1)",
+      texte:"Décret n°2022-1209 du 31 août 2022 (art. 1) — applicable au 1er septembre 2022",
+      rows:[
+        {eo:1,ed:1,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:2,ed:1,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:3,ed:1,pct:50,fixe:SIX_MONTHS,deduction:0,seuilMin:0,note:"1/2 ancienneté + 6 mois"},
+        {eo:4,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:5,ed:2,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:6,ed:3,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:7,ed:3,pct:33,fixe:SIX_MONTHS,deduction:0,seuilMin:0,note:"1/3 ancienneté + 6 mois"},
+        {eo:8,ed:4,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:9,ed:5,pct:67,fixe:0,deduction:0,seuilMin:0,note:"2/3 ancienneté acquise"},
+        {eo:10,ed:6,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:11,ed:7,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+      ],
+      durees:[{e:1,j:548},{e:2,j:730},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:1095},{e:9,j:1095},{e:10,j:1095},{e:11,j:1095},{e:12,j:1095},{e:13,j:null}],
+    },
+
+    { id:"c2_b1", label:"C2 → B1", warn:false,
+      origine:"Agent administratif principal 2e classe (C2)",
+      destination:"Contrôleur 2e classe (B1)",
+      texte:"Décret n°2022-1209 du 31 août 2022 (art. 1) — applicable au 1er septembre 2022",
+      rows:[
+        {eo:1,ed:1,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:2,ed:2,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:3,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:4,ed:4,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:5,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:6,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:7,ed:6,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:8,ed:7,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:9,ed:8,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:10,ed:8,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:11,ed:8,pct:75,fixe:0,deduction:0,seuilMin:0,note:"3/4 ancienneté acquise"},
+        {eo:12,ed:9,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+      ],
+      durees:[{e:1,j:548},{e:2,j:730},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:1095},{e:9,j:1095},{e:10,j:1095},{e:11,j:1095},{e:12,j:1095},{e:13,j:null}],
+    },
+
+    { id:"c3_b1", label:"C3 → B1", warn:false,
+      origine:"Agent administratif principal 1ère classe (C3)",
+      destination:"Contrôleur 2e classe (B1)",
+      texte:"Décret n°2022-1209 du 31 août 2022 (art. 1) — applicable au 1er septembre 2022. 8e échelon dédoublé selon ancienneté",
+      rows:[
+        {eo:1,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:2,ed:4,pct:100,fixe:ONE_YEAR,deduction:0,seuilMin:0,note:"ancienneté + 1 an"},
+        {eo:3,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:4,ed:6,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:5,ed:7,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:6,ed:8,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:7,ed:8,pct:150,fixe:0,deduction:0,seuilMin:0,note:"3/2 ancienneté acquise"},
+        {eo:8,ed:9,pct:100,fixe:ONE_YEAR,deduction:0,seuilMin:0,seuilMax:TWO_YEARS,note:"avant 2 ans : ancienneté + 1 an"},
+        {eo:8,ed:10,pct:300,fixe:0,deduction:TWO_YEARS,seuilMin:TWO_YEARS,note:"à partir de 2 ans : 3 × (ancienneté − 2 ans)"},
+        {eo:9,ed:11,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:10,ed:12,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+      ],
+      durees:[{e:1,j:548},{e:2,j:730},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:1095},{e:9,j:1095},{e:10,j:1095},{e:11,j:1095},{e:12,j:1095},{e:13,j:null}],
+    },
+
+  ]},
+
+  // ============================================================
+  // CATÉGORIE B → B (Décret 2023-448 du 07/06/2023 — modif. décret 2009-1388 art. 26)
+  // ============================================================
   { label:"Catégorie B → B (avancement de grade)", tables:[
-    { id:"b_bp", label:"Contrôleur → Contrôleur principal (B)", warn:true,
-      origine:"Contrôleurs des finances publiques – Contrôleur", destination:"Contrôleurs des finances publiques – Contrôleur principal",
-      texte:"Tableau d'avancement – à vérifier",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:182},{eo:3,ed:2,pct:0,fixe:0},{eo:4,ed:2,pct:50,fixe:182},{eo:5,ed:3,pct:0,fixe:0},{eo:6,ed:3,pct:50,fixe:182},{eo:7,ed:4,pct:0,fixe:0},{eo:8,ed:5,pct:0,fixe:0},{eo:9,ed:6,pct:0,fixe:0},{eo:10,ed:7,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:null}]},
+
+    { id:"b1_b2", label:"B1 → B2", warn:false,
+      origine:"Contrôleur 2e classe (B1)",
+      destination:"Contrôleur 1ère classe (B2)",
+      texte:"Décret n°2023-448 du 7 juin 2023 (mod. décret 2009-1388 art. 26). 6e, 7e, 8e et 13e échelons dédoublés selon ancienneté",
+      rows:[
+        {eo:4,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:5,ed:3,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+
+        {eo:6,ed:4,pct:75,fixe:ONE_YEAR,deduction:0,seuilMin:0,seuilMax:SIXTEEN_MONTHS,note:"avant 1 an 4 mois : 3/4 ancienneté + 1 an"},
+        {eo:6,ed:5,pct:150,fixe:0,deduction:SIXTEEN_MONTHS,seuilMin:SIXTEEN_MONTHS,note:"à partir de 1 an 4 mois : 3/2 × (ancienneté − 1 an 4 mois)"},
+
+        {eo:7,ed:5,pct:75,fixe:ONE_YEAR,deduction:0,seuilMin:0,seuilMax:SIXTEEN_MONTHS,note:"avant 1 an 4 mois : 3/4 ancienneté + 1 an"},
+        {eo:7,ed:6,pct:150,fixe:0,deduction:SIXTEEN_MONTHS,seuilMin:SIXTEEN_MONTHS,note:"à partir de 1 an 4 mois : 3/2 × (ancienneté − 1 an 4 mois)"},
+
+        {eo:8,ed:6,pct:50,fixe:ONE_YEAR,deduction:0,seuilMin:0,seuilMax:TWO_YEARS,note:"avant 2 ans : 1/2 ancienneté + 1 an"},
+        {eo:8,ed:7,pct:100,fixe:0,deduction:TWO_YEARS,seuilMin:TWO_YEARS,note:"à partir de 2 ans : ancienneté − 2 ans"},
+
+        {eo:9,ed:7,pct:67,fixe:ONE_YEAR,deduction:0,seuilMin:0,note:"2/3 ancienneté + 1 an"},
+        {eo:10,ed:8,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:11,ed:9,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:12,ed:10,pct:75,fixe:0,deduction:0,seuilMin:0,note:"3/4 ancienneté acquise"},
+
+        {eo:13,ed:11,pct:100,fixe:0,deduction:0,seuilMin:0,seuilMax:FOUR_YEARS,note:"avant 4 ans : ancienneté acquise"},
+        {eo:13,ed:12,pct:0,fixe:0,deduction:0,seuilMin:FOUR_YEARS,note:"à partir de 4 ans : sans ancienneté"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:1095},{e:9,j:1095},{e:10,j:1095},{e:11,j:1095},{e:12,j:null}],
+    },
+
+    { id:"b2_b3", label:"B2 → B3", warn:false,
+      origine:"Contrôleur 1ère classe (B2)",
+      destination:"Contrôleur principal (B3)",
+      texte:"Décret n°2023-448 du 7 juin 2023 (mod. décret 2009-1388 art. 26). 6e et 12e échelons dédoublés selon ancienneté",
+      rows:[
+        {eo:4,ed:1,pct:50,fixe:0,deduction:0,seuilMin:0,note:"1/2 ancienneté acquise"},
+        {eo:5,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+
+        {eo:6,ed:3,pct:0,fixe:0,deduction:0,seuilMin:0,seuilMax:ONE_YEAR,note:"avant 1 an : sans ancienneté"},
+        {eo:6,ed:3,pct:100,fixe:0,deduction:0,seuilMin:ONE_YEAR,note:"à partir de 1 an : ancienneté acquise"},
+
+        {eo:7,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:8,ed:5,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:9,ed:5,pct:67,fixe:0,deduction:0,seuilMin:0,note:"2/3 ancienneté acquise"},
+        {eo:10,ed:6,pct:100,fixe:0,deduction:0,seuilMin:0,note:"ancienneté acquise"},
+        {eo:11,ed:7,pct:75,fixe:0,deduction:0,seuilMin:0,note:"3/4 ancienneté acquise"},
+
+        {eo:12,ed:8,pct:100,fixe:0,deduction:0,seuilMin:0,seuilMax:THREE_YEARS,note:"avant 3 ans : ancienneté acquise"},
+        {eo:12,ed:9,pct:0,fixe:0,deduction:0,seuilMin:THREE_YEARS,note:"à partir de 3 ans : sans ancienneté"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:730},{e:4,j:730},{e:5,j:730},{e:6,j:1095},{e:7,j:1095},{e:8,j:1095},{e:9,j:null}],
+    },
+
   ]},
-  { label:"Catégorie B → A", tables:[
-    { id:"b_a", label:"Contrôleur (B) → Inspecteur (A)", warn:true,
-      origine:"Contrôleurs des finances publiques – Contrôleur", destination:"Inspecteurs des finances publiques – Inspecteur",
-      texte:"Décret n°2009-707 du 16 juin 2009 – à vérifier",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:182},{eo:3,ed:2,pct:0,fixe:0},{eo:4,ed:2,pct:50,fixe:182},{eo:5,ed:3,pct:0,fixe:0},{eo:6,ed:3,pct:50,fixe:182},{eo:7,ed:4,pct:0,fixe:0},{eo:8,ed:4,pct:50,fixe:182},{eo:9,ed:5,pct:0,fixe:0},{eo:10,ed:6,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}]},
-    { id:"bp_a", label:"Contrôleur principal (B) → Inspecteur (A)", warn:true,
-      origine:"Contrôleurs des finances publiques – Contrôleur principal", destination:"Inspecteurs des finances publiques – Inspecteur",
-      texte:"Arrêtés de reclassement – à vérifier",
-      rows:[{eo:1,ed:2,pct:0,fixe:0},{eo:2,ed:2,pct:50,fixe:182},{eo:3,ed:3,pct:0,fixe:0},{eo:4,ed:4,pct:0,fixe:0},{eo:5,ed:5,pct:0,fixe:0},{eo:6,ed:6,pct:0,fixe:0},{eo:7,ed:7,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}]},
+
+  // ============================================================
+  // CATÉGORIE B → A (Décret 2022-1579 du 17/12/2022 — modif. décret 2010-986 art. 15-1)
+  // ============================================================
+  { label:"Catégorie B → A (promotion)", tables:[
+
+    { id:"b1_ifip", label:"B1 → Ifip (Inspecteur)", warn:false,
+      origine:"Contrôleur 2e classe (B1)",
+      destination:"Inspecteur des finances publiques (Ifip)",
+      texte:"Décret n°2022-1579 du 17 décembre 2022 (mod. décret 2010-986 art. 15-1). « avec » = ancienneté acquise · « sans » = pas de reprise",
+      rows:[
+        {eo:1,ed:1,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:2,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:3,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:4,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:5,ed:2,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:6,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:7,ed:4,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:8,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:9,ed:5,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:10,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:11,ed:6,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:12,ed:7,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:13,ed:7,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}],
+    },
+
+    { id:"b2_ifip", label:"B2 → Ifip (Inspecteur)", warn:false,
+      origine:"Contrôleur 1ère classe (B2)",
+      destination:"Inspecteur des finances publiques (Ifip)",
+      texte:"Décret n°2022-1579 du 17 décembre 2022 (mod. décret 2010-986 art. 15-1)",
+      rows:[
+        {eo:1,ed:2,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:2,ed:2,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:3,ed:3,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:4,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:5,ed:4,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:6,ed:5,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:7,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:8,ed:6,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:9,ed:6,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:10,ed:7,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:11,ed:8,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:12,ed:8,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}],
+    },
+
+    { id:"b3_ifip", label:"B3 → Ifip (Inspecteur)", warn:false,
+      origine:"Contrôleur principal (B3)",
+      destination:"Inspecteur des finances publiques (Ifip)",
+      texte:"Décret n°2022-1579 du 17 décembre 2022 (mod. décret 2010-986 art. 15-1)",
+      rows:[
+        {eo:1,ed:3,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:2,ed:4,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:3,ed:5,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:4,ed:5,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:5,ed:6,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:6,ed:7,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:7,ed:8,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:8,ed:9,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:9,ed:9,pct:100,fixe:0,deduction:0,seuilMin:0,note:"avec ancienneté"},
+        {eo:10,ed:10,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+        {eo:11,ed:10,pct:0,fixe:0,deduction:0,seuilMin:0,note:"sans ancienneté"},
+      ],
+      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}],
+    },
+
   ]},
-  { label:"Catégorie A → A (avancement de grade)", tables:[
-    { id:"a_ap", label:"Inspecteur (A) → Inspecteur principal", warn:true,
-      origine:"Inspecteurs des finances publiques – Inspecteur", destination:"Inspecteurs des finances publiques – Inspecteur principal",
-      texte:"Tableau d'avancement – à vérifier",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:182},{eo:3,ed:1,pct:100,fixe:0},{eo:4,ed:2,pct:0,fixe:0},{eo:5,ed:2,pct:50,fixe:182},{eo:6,ed:3,pct:0,fixe:0},{eo:7,ed:3,pct:50,fixe:182},{eo:8,ed:4,pct:0,fixe:0},{eo:9,ed:5,pct:0,fixe:0},{eo:10,ed:6,pct:0,fixe:0},{eo:11,ed:7,pct:0,fixe:0}],
-      durees:[{e:1,j:730},{e:2,j:730},{e:3,j:730},{e:4,j:730},{e:5,j:1095},{e:6,j:1095},{e:7,j:null}]},
-    { id:"ap_dd", label:"Inspecteur principal → Directeur divisionnaire", warn:true,
-      origine:"Inspecteurs des finances publiques – Inspecteur principal", destination:"Inspecteurs des finances publiques – Directeur divisionnaire",
-      texte:"Tableau d'avancement – à vérifier",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:182},{eo:3,ed:2,pct:0,fixe:0},{eo:4,ed:3,pct:0,fixe:0},{eo:5,ed:4,pct:0,fixe:0},{eo:6,ed:5,pct:0,fixe:0},{eo:7,ed:6,pct:0,fixe:0}],
-      durees:[{e:1,j:730},{e:2,j:730},{e:3,j:730},{e:4,j:1095},{e:5,j:1095},{e:6,j:null}]},
-  ]},
-  { label:"Reclassements externes (hors DGFiP)", tables:[
-    { id:"ext_b", label:"Corps B externe → Contrôleur DGFiP", warn:true,
-      origine:"Corps de catégorie B – autre administration", destination:"Contrôleurs des finances publiques – Contrôleur",
-      texte:"Arrêté de reclassement spécifique – à compléter",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:0},{eo:3,ed:2,pct:0,fixe:0},{eo:4,ed:2,pct:50,fixe:0},{eo:5,ed:3,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:365},{e:4,j:548},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:null}]},
-    { id:"ext_a", label:"Corps A externe → Inspecteur DGFiP", warn:true,
-      origine:"Corps de catégorie A – autre administration", destination:"Inspecteurs des finances publiques – Inspecteur",
-      texte:"Arrêté de reclassement spécifique – à compléter",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:2,pct:0,fixe:0},{eo:3,ed:3,pct:0,fixe:0},{eo:4,ed:4,pct:0,fixe:0},{eo:5,ed:5,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:365},{e:3,j:548},{e:4,j:730},{e:5,j:730},{e:6,j:730},{e:7,j:730},{e:8,j:730},{e:9,j:1095},{e:10,j:1095},{e:11,j:null}]},
-  ]},
+
+  // ============================================================
+  // PERSONNALISÉ
+  // ============================================================
   { label:"Personnalisé", tables:[
-    { id:"custom", label:"Table personnalisée", warn:false, origine:"À définir", destination:"À définir", texte:"",
-      rows:[{eo:1,ed:1,pct:0,fixe:0},{eo:2,ed:1,pct:50,fixe:182},{eo:3,ed:2,pct:0,fixe:0}],
-      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:null}]},
+    { id:"custom", label:"Table personnalisée", warn:false,
+      origine:"À définir", destination:"À définir", texte:"",
+      rows:[
+        {eo:1,ed:1,pct:0,fixe:0,deduction:0,seuilMin:0,note:""},
+        {eo:2,ed:1,pct:50,fixe:0,deduction:0,seuilMin:0,note:""},
+        {eo:3,ed:2,pct:100,fixe:0,deduction:0,seuilMin:0,note:""},
+      ],
+      durees:[{e:1,j:365},{e:2,j:548},{e:3,j:null}],
+    },
   ]},
+
 ];
 const ALL = GROUPS.flatMap(g=>g.tables);
 
 const badgeInfo = id => {
-  if(id.startsWith("c")) return {bg:"#1a4f8a",label:"C→B"};
-  if(id==="b_bp") return {bg:"#0f6e56",label:"B→B"};
-  if(id.startsWith("b")||id==="bp_a") return {bg:"#533490",label:"B→A"};
-  if(id.startsWith("a")||id==="ap_dd") return {bg:"#7a3b1e",label:"A→A"};
-  if(id.startsWith("ext")) return {bg:"#4a5568",label:"Externe"};
+  if(id.startsWith("c1_c2")||id.startsWith("c2_c3")) return {bg:"#1a4f8a",label:"C→C"};
+  if(id.startsWith("c")&&id.includes("_b")) return {bg:"#1a4f8a",label:"C→B"};
+  if(id==="b1_b2"||id==="b2_b3") return {bg:"#0f6e56",label:"B→B"};
+  if(id.includes("_ifip")) return {bg:"#533490",label:"B→A"};
   return {bg:"#888",label:"Custom"};
 };
+
+const pickVariant = (rows, eo, acq) => {
+  const candidates = rows.filter(r => r.eo === eo);
+  if(!candidates.length) return null;
+  if(candidates.length === 1) return candidates[0];
+  // tri par seuilMin croissant, on prend le dernier dont seuilMin <= acq
+  const sorted = [...candidates].sort((a,b)=>(a.seuilMin||0)-(b.seuilMin||0));
+  let match = sorted[0];
+  for(const r of sorted){
+    if((r.seuilMin||0) <= acq) match = r;
+  }
+  return match;
+};
+
+const uniqueEchelons = (rows) => {
+  const seen = new Set();
+  return rows.filter(r => { if(seen.has(r.eo)) return false; seen.add(r.eo); return true; });
+};
+const hasVariants = (rows, eo) => rows.filter(r => r.eo === eo).length > 1;
 
 function App() {
   const [tab, setTab] = useState("calc");
   const [tables, setTables] = useState(ALL);
-  const [selId, setSelId] = useState("c2_b");
+  const [selId, setSelId] = useState("c2_b1");
   const [agent, setAgent] = useState({echelon:"",dateEch:"",dateRecl:""});
   const [result, setResult] = useState(null);
 
@@ -172,34 +417,59 @@ function App() {
   const calc = useCallback(() => {
     const {echelon,dateEch,dateRecl} = agent;
     if(!echelon||!dateEch||!dateRecl){setResult({err:"Veuillez remplir tous les champs."});return;}
-    const eo=parseInt(echelon), row=table.rows.find(r=>r.eo===eo);
-    if(!row){setResult({err:`Échelon ${eo} absent de la table.`});return;}
+    const eo=parseInt(echelon);
     const acq=daysBetween(dateEch,dateRecl);
     if(acq<0){setResult({err:"La date de reclassement est antérieure à la prise d'échelon."});return;}
+    const row = pickVariant(table.rows, eo, acq);
+    if(!row){setResult({err:`Échelon ${eo} absent de la table.`});return;}
+    const variants = table.rows.filter(r => r.eo === eo);
+    const hasV = variants.length > 1;
     const dureeInfo=table.durees.find(d=>d.e===row.ed), dureeJ=dureeInfo?dureeInfo.j:null;
-    const conserve=calcC(acq,row.pct,row.fixe,dureeJ);
+    const conserve=calcC(acq, row.pct, row.fixe, row.deduction||0, dureeJ);
     let dateP=null,joursR=null;
     if(dureeJ!==null){joursR=dureeJ-conserve;dateP=addDays(dateRecl,joursR);}
-    setResult({eo,ed:row.ed,pct:row.pct,fixe:row.fixe||0,acq,conserve,dureeJ,joursR,dateP,dateRF:new Date(dateRecl).toLocaleDateString("fr-FR")});
+
+    // Détail calculatoire
+    const base = Math.max(0, acq - (row.deduction||0));
+    const pctRaw = Math.floor(base * row.pct / 100);
+    const beforeClamp = pctRaw + (row.fixe||0);
+
+    setResult({
+      eo, ed:row.ed, pct:row.pct, fixe:row.fixe||0, deduction:row.deduction||0,
+      acq, conserve, dureeJ, joursR, dateP,
+      dateRF:new Date(dateRecl).toLocaleDateString("fr-FR"),
+      hasV, variantNote: row.note || (hasV ? fmtSeuil(row.seuilMin, row.seuilMax) : ""),
+      base, pctRaw, beforeClamp,
+      clamped: dureeJ !== null && beforeClamp > dureeJ,
+    });
   },[agent,table]);
 
-  const updRow=(eo,f,v)=>setTables(p=>p.map(t=>t.id!==selId?t:{...t,rows:t.rows.map(r=>r.eo===eo?{...r,[f]:parseInt(v)||0}:r)}));
-  const updD=(e,v)=>setTables(p=>p.map(t=>t.id!==selId?t:{...t,durees:t.durees.map(d=>d.e===e?{...d,j:v===""?null:parseInt(v)}:d)}));
-  const addRow=()=>{
-    const mEo=Math.max(...table.rows.map(r=>r.eo),0),mE=Math.max(...table.durees.map(d=>d.e),0);
-    setTables(p=>p.map(t=>t.id!==selId?t:{...t,rows:[...t.rows,{eo:mEo+1,ed:1,pct:0,fixe:0}],durees:[...t.durees,{e:mE+1,j:365}]}));
+  const updRow = (idx, f, v) => setTables(p => p.map(t => t.id !== selId ? t : { ...t, rows: t.rows.map((r,i) => i === idx ? { ...r, [f]: f === "note" ? v : (v === "" ? 0 : parseInt(v) || 0) } : r) }));
+  const updD = (e,v) => setTables(p => p.map(t => t.id !== selId ? t : { ...t, durees: t.durees.map(d => d.e === e ? { ...d, j: v === "" ? null : parseInt(v) } : d) }));
+  const addRow = () => {
+    const mEo = Math.max(...table.rows.map(r=>r.eo),0), mE = Math.max(...table.durees.map(d=>d.e),0);
+    setTables(p => p.map(t => t.id !== selId ? t : { ...t, rows: [...t.rows, {eo:mEo+1,ed:1,pct:0,fixe:0,deduction:0,seuilMin:0,note:""}], durees: [...t.durees, {e:mE+1,j:365}] }));
   };
-  const delRow=eo=>setTables(p=>p.map(t=>t.id!==selId?t:{...t,rows:t.rows.filter(r=>r.eo!==eo)}));
+  const addVariant = (eo) => {
+    setTables(p => p.map(t => {
+      if(t.id !== selId) return t;
+      const idx = t.rows.map(r=>r.eo).lastIndexOf(eo);
+      const base = t.rows[idx];
+      const newRow = { ...base, seuilMin: TWO_YEARS, note: "à partir de 2 ans" };
+      return { ...t, rows: [...t.rows.slice(0,idx+1), newRow, ...t.rows.slice(idx+1)] };
+    }));
+  };
+  const delRow = (idx) => setTables(p => p.map(t => t.id !== selId ? t : { ...t, rows: t.rows.filter((_,i) => i !== idx) }));
 
   return (
     <div>
       <h2 style={{fontSize:20,fontWeight:700,marginBottom:4}}>Calculateur de reclassement</h2>
-      <p style={{fontSize:13,color:"#718096",marginBottom:20}}>Fonction publique de l'État — DGFiP · {ALL.length-1} scénarios disponibles</p>
+      <p style={{fontSize:13,color:"#718096",marginBottom:20}}>Fonction publique de l'État — DGFiP · {ALL.length-1} scénarios officiels</p>
 
       <div style={{marginBottom:14}}>
         <label className="lbl">Scénario de reclassement</label>
         <div className="sel-row">
-          <select value={selId} onChange={e=>{setSelId(e.target.value);setResult(null);setAgent({echelon:"",dateEch:"",dateRecl:""});}} style={{maxWidth:440}}>
+          <select value={selId} onChange={e=>{setSelId(e.target.value);setResult(null);setAgent({echelon:"",dateEch:"",dateRecl:""});}} style={{maxWidth:500}}>
             {GROUPS.map(g=><optgroup key={g.label} label={g.label}>{g.tables.map(t=><option key={t.id} value={t.id}>{t.label}</option>)}</optgroup>)}
           </select>
           <span className="badge" style={{background:badge.bg}}>{badge.label}</span>
@@ -207,10 +477,10 @@ function App() {
       </div>
 
       {table && <div className="obar"><strong>Origine :</strong> {table.origine} &nbsp;·&nbsp; <strong>Destination :</strong> {table.destination}</div>}
-      {table?.warn && <div className="warn">⚠️ <strong>Table indicative</strong> — {table.texte}</div>}
+      {table && table.texte && <div className="warn">📄 <strong>Base juridique :</strong> {table.texte}</div>}
 
       <div className="tab-bar">
-        {[["calc","Calculateur"],["table","Tables de reclassement"]].map(([k,l])=>(
+        {[["calc","Calculateur"],["table","Voir / éditer la table"]].map(([k,l])=>(
           <button key={k} className={`tab-btn${tab===k?" active":""}`} onClick={()=>setTab(k)}>{l}</button>
         ))}
       </div>
@@ -221,18 +491,27 @@ function App() {
             <div style={{fontWeight:600,fontSize:15,marginBottom:14}}>Situation de l'agent</div>
             <div className="grid3">
               <div>
-                <label className="lbl">Échelon actuel</label>
+                <label className="lbl">Échelon actuel (origine)</label>
                 <select value={agent.echelon} onChange={e=>setAgent(a=>({...a,echelon:e.target.value}))}>
                   <option value="">— choisir —</option>
-                  {table?.rows.map(r=><option key={r.eo} value={r.eo}>{r.eo}e échelon</option>)}
+                  {table && uniqueEchelons(table.rows).sort((a,b)=>a.eo-b.eo).map(r=>(
+                    <option key={r.eo} value={r.eo}>
+                      {r.eo}e échelon{hasVariants(table.rows, r.eo) ? " ⚙ (variantes)" : ""}
+                    </option>
+                  ))}
                 </select>
+                {agent.echelon && table && hasVariants(table.rows, parseInt(agent.echelon)) && (
+                  <div style={{fontSize:11,color:"#854d0e",marginTop:4,fontStyle:"italic"}}>
+                    ⚙ Cet échelon a plusieurs cas selon l'ancienneté — détection automatique
+                  </div>
+                )}
               </div>
               <div>
                 <label className="lbl">Date de prise d'échelon</label>
                 <input type="date" value={agent.dateEch} onChange={e=>setAgent(a=>({...a,dateEch:e.target.value}))} />
               </div>
               <div>
-                <label className="lbl">Date de reclassement</label>
+                <label className="lbl">Date de reclassement (promotion)</label>
                 <input type="date" value={agent.dateRecl} onChange={e=>setAgent(a=>({...a,dateRecl:e.target.value}))} />
               </div>
             </div>
@@ -243,13 +522,19 @@ function App() {
             ? <div className="err">❌ {result.err}</div>
             : <div className="card">
                 <div style={{fontWeight:600,fontSize:15,marginBottom:14}}>Résultat du reclassement</div>
+                {result.hasV && (
+                  <div className="info">
+                    ⚙ <strong>Cas appliqué :</strong> {result.eo}e échelon — <em>{result.variantNote}</em><br/>
+                    <span style={{fontSize:11,opacity:.85}}>Ancienneté de l'agent : {fmt(result.acq)} → règle correspondante sélectionnée automatiquement.</span>
+                  </div>
+                )}
                 <div className="rgrid">
                   {[
-                    {label:"Échelon de reclassement",value:`${result.ed}e échelon`,sub:`à compter du ${result.dateRF}`,color:"#1a3c6e"},
-                    {label:"Ancienneté conservée",value:fmt(result.conserve),sub:`Formule : ${fmtF(result.pct,result.fixe)} de ${fmt(result.acq)}`,color:"#0f6e56"},
+                    {label:"Échelon de reclassement", value:`${result.ed}e échelon`, sub:`à compter du ${result.dateRF}`, color:"#1a3c6e"},
+                    {label:"Ancienneté conservée", value:fmt(result.conserve), sub:result.variantNote || fmtFormule(result.pct,result.fixe,result.deduction), color:"#0f6e56"},
                     result.dateP
-                      ?{label:"Prochain échelon",value:`${result.ed+1}e`,sub:`le ${result.dateP}`,color:"#533490"}
-                      :{label:"Échelon terminal",value:"Sommet de grade",sub:"Pas d'échelon suivant",color:"#888"},
+                      ? {label:"Prochain échelon", value:`${result.ed+1}e`, sub:`le ${result.dateP}`, color:"#533490"}
+                      : {label:"Échelon terminal", value:"Sommet", sub:"Pas d'échelon suivant", color:"#888"},
                   ].map((c,i)=>(
                     <div key={i} className="rc" style={{borderLeftColor:c.color}}>
                       <div className="rc-lbl">{c.label}</div>
@@ -261,15 +546,17 @@ function App() {
                 <div style={{background:"#f7fafc",borderRadius:8,padding:"12px 14px"}}>
                   <div style={{fontWeight:600,fontSize:13,marginBottom:10}}>Détail du calcul</div>
                   {[
-                    ["Échelon d'origine",`${result.eo}e échelon`],
-                    ["Ancienneté acquise à la date de reclassement",fmt(result.acq)],
-                    ["Formule de conservation",fmtF(result.pct,result.fixe)],
-                    ["Calcul détaillé",`(${result.acq} j × ${result.pct}% = ${Math.floor(result.acq*result.pct/100)} j)${result.fixe>0?` + ${result.fixe} j fixes = ${result.conserve} j`:""}`],
-                    ["Ancienneté reprise dans le nouvel échelon",fmt(result.conserve)],
-                    ["Durée normale de l'échelon de destination",result.dureeJ?fmt(result.dureeJ):"Échelon terminal"],
-                    result.joursR!==null?["Temps restant avant le prochain échelon",fmt(result.joursR)]:null,
-                  ].filter(Boolean).map(([k,v])=>(
-                    <div key={k} className="drow"><span>{k}</span><span>{v}</span></div>
+                    ["Échelon d'origine", `${result.eo}e échelon${result.hasV?` — ${result.variantNote}`:""}`],
+                    ["Ancienneté acquise à la date de reclassement", fmt(result.acq)],
+                    ["Règle (libellé officiel)", result.variantNote],
+                    ["Formule appliquée", <span className="formula-display">{fmtFormule(result.pct,result.fixe,result.deduction)}</span>],
+                    result.deduction > 0 ? ["Base de calcul après déduction", `${fmt(result.acq)} − ${fmt(result.deduction)} = ${fmt(result.base)}`] : null,
+                    ["Détail chiffré", `(${result.base} j × ${result.pct}% = ${result.pctRaw} j)${result.fixe>0?` + ${result.fixe} j fixes`:""} = ${result.beforeClamp} j${result.clamped?` → plafonné à ${result.conserve} j`:""}`],
+                    ["Ancienneté reprise dans le nouvel échelon", fmt(result.conserve)],
+                    ["Durée normale de l'échelon de destination", result.dureeJ?fmt(result.dureeJ):"Échelon terminal"],
+                    result.joursR!==null?["Temps restant avant le prochain échelon", fmt(result.joursR)]:null,
+                  ].filter(Boolean).map(([k,v],i)=>(
+                    <div key={i} className="drow"><span>{k}</span><span>{v}</span></div>
                   ))}
                 </div>
               </div>
@@ -283,38 +570,54 @@ function App() {
             <div>
               <div style={{fontWeight:600,fontSize:14,marginBottom:4}}>Tableau de correspondance</div>
               <div className="hint" style={{marginBottom:10}}>
-                Formule : <strong>ancienneté conservée = (% × jours acquis) + jours fixes</strong><br/>
-                Ex. : 50% + 182 j = moitié de l'ancienneté + 6 mois fixes · 0% + 0 = pas de reprise
+                <strong>Formule générale :</strong> <span className="formula-display">conservée = ((acquis − déduction) × %) + jours fixes</span><br/>
+                Exemples : <strong>50% + 182</strong> = 1/2 ancienneté + 6 mois · <strong>150% avec déduction 487</strong> = 3/2 de l'ancienneté au-delà de 1 an 4 mois · <strong>seuilMin 730</strong> = règle applicable à partir de 2 ans d'ancienneté
               </div>
               <table className="rt">
                 <thead>
                   <tr>
-                    <th style={{textAlign:"left"}}>Éch. orig.</th>
-                    <th>→ Éch. dest.</th>
-                    <th>% acquis</th>
-                    <th>+ j. fixes</th>
-                    <th>Formule</th>
+                    <th style={{textAlign:"left"}}>Orig.</th>
+                    <th>→ Dest.</th>
+                    <th>%</th>
+                    <th>Déd. (j)</th>
+                    <th>+ fixe (j)</th>
+                    <th>Seuil min (j)</th>
+                    <th>Libellé officiel</th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {table.rows.map(r=>(
-                    <tr key={r.eo}>
-                      <td style={{fontWeight:600}}>{r.eo}e</td>
-                      <td style={{textAlign:"center"}}><input type="number" className="ti" value={r.ed} min={1} onChange={e=>updRow(r.eo,"ed",e.target.value)} /></td>
-                      <td style={{textAlign:"center"}}><input type="number" className="ti" value={r.pct} min={0} max={100} onChange={e=>updRow(r.eo,"pct",e.target.value)} /></td>
-                      <td style={{textAlign:"center"}}><input type="number" className="ti" style={{width:58}} value={r.fixe||0} min={0} onChange={e=>updRow(r.eo,"fixe",e.target.value)} /></td>
-                      <td style={{textAlign:"center",fontSize:11,color:"#718096"}}>{fmtF(r.pct,r.fixe||0)}</td>
-                      <td><button onClick={()=>delRow(r.eo)} style={{background:"none",border:"none",cursor:"pointer",color:"#a0aec0",fontSize:14,padding:"2px 6px"}}>✕</button></td>
-                    </tr>
-                  ))}
+                  {table.rows.map((r,idx) => {
+                    const isVariant = idx > 0 && table.rows[idx-1].eo === r.eo;
+                    const hasMultiple = table.rows.filter(x => x.eo === r.eo).length > 1;
+                    return (
+                      <tr key={idx} className={isVariant ? "variant-row" : ""}>
+                        <td style={{fontWeight: isVariant ? 400 : 600}}>
+                          {isVariant ? `↳ ${r.eo}e` : `${r.eo}e`}
+                          {hasMultiple && !isVariant && <span className="badge-sm">⚙ {table.rows.filter(x=>x.eo===r.eo).length}</span>}
+                        </td>
+                        <td style={{textAlign:"center"}}><input type="number" className="ti" value={r.ed} min={1} onChange={e=>updRow(idx,"ed",e.target.value)} /></td>
+                        <td style={{textAlign:"center"}}><input type="number" className="ti" value={r.pct} min={0} max={300} onChange={e=>updRow(idx,"pct",e.target.value)} /></td>
+                        <td style={{textAlign:"center"}}><input type="number" className="ti" style={{width:54}} value={r.deduction||0} min={0} onChange={e=>updRow(idx,"deduction",e.target.value)} /></td>
+                        <td style={{textAlign:"center"}}><input type="number" className="ti" style={{width:54}} value={r.fixe||0} min={0} onChange={e=>updRow(idx,"fixe",e.target.value)} /></td>
+                        <td style={{textAlign:"center"}}><input type="number" className="ti" style={{width:54}} value={r.seuilMin||0} min={0} onChange={e=>updRow(idx,"seuilMin",e.target.value)} /></td>
+                        <td style={{textAlign:"left"}}>
+                          <input type="text" value={r.note||""} onChange={e=>updRow(idx,"note",e.target.value)} style={{fontSize:11,padding:"3px 5px",border:"1.5px solid #cbd5e0",borderRadius:5,width:"100%",minWidth:130}} />
+                        </td>
+                        <td style={{textAlign:"right",whiteSpace:"nowrap"}}>
+                          {!isVariant && <button onClick={()=>addVariant(r.eo)} title="Ajouter une variante" style={{background:"none",border:"none",cursor:"pointer",color:"#1a3c6e",fontSize:11,padding:"2px 4px",fontWeight:600}}>+var</button>}
+                          <button onClick={()=>delRow(idx)} title="Supprimer" style={{background:"none",border:"none",cursor:"pointer",color:"#a0aec0",fontSize:14,padding:"2px 4px"}}>✕</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
               <button className="btn-sm" onClick={addRow}>+ Ajouter un échelon</button>
             </div>
             <div>
               <div style={{fontWeight:600,fontSize:14,marginBottom:4}}>Durées des échelons (destination)</div>
-              <p style={{fontSize:11,color:"#718096",marginBottom:10}}>Vide = échelon terminal · L'ancienneté conservée est plafonnée à la durée de l'échelon</p>
+              <p style={{fontSize:11,color:"#718096",marginBottom:10}}>Vide = échelon terminal. L'ancienneté conservée est plafonnée à la durée.</p>
               <table className="rt">
                 <thead>
                   <tr>
