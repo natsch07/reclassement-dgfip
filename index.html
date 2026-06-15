@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculateur de reclassement — SN CFTC DGFiP</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: #f4f6f9;
+      color: #1a202c;
+      min-height: 100vh;
+    }
+    header {
+      background: #1a3c6e;
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    header img { height: 36px; }
+    header .title { font-size: 16px; font-weight: 600; }
+    header .sub { font-size: 12px; opacity: 0.75; margin-top: 2px; }
+    main { max-width: 860px; margin: 28px auto; padding: 0 16px 40px; }
+    select, input[type="date"], input[type="number"] {
+      font-family: inherit;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1.5px solid #cbd5e0;
+      background: #fff;
+      color: #1a202c;
+      width: 100%;
+      transition: border-color .15s;
+    }
+    select:focus, input:focus { outline: none; border-color: #1a3c6e; }
+    button { font-family: inherit; cursor: pointer; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .warn {
+      background: #fffbeb;
+      border: 1px solid #f6e05e;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 12px;
+      color: #744210;
+      margin-bottom: 14px;
+    }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 620px) { .grid3, .grid2 { grid-template-columns: 1fr; } }
+    label.lbl { display: block; font-size: 12px; font-weight: 600; color: #4a5568; margin-bottom: 5px; }
+    .btn-primary {
+      background: #1a3c6e; color: #fff; border: none;
+      padding: 10px 26px; border-radius: 8px; font-size: 14px; font-weight: 600;
+      margin-top: 16px;
+    }
+    .btn-primary:hover { background: #153060; }
+    .btn-sm {
+      background: #fff; color: #1a202c; border: 1.5px solid #cbd5e0;
+      padding: 6px 14px; border-radius: 7px; font-size: 13px; margin-top: 10px;
+    }
+    .btn-sm:hover { border-color: #1a3c6e; }
+    .result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+    @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr; } }
+    .result-card {
+      background: #f7fafc; border-radius: 8px;
+      padding: 12px 14px; border-left: 3px solid #ccc;
+    }
+    .result-card .rc-label { font-size: 11px; color: #718096; margin-bottom: 4px; }
+    .result-card .rc-value { font-size: 20px; font-weight: 700; color: #1a202c; }
+    .result-card .rc-sub { font-size: 11px; color: #718096; margin-top: 3px; }
+    .detail-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 0; border-bottom: 1px solid #edf2f7; font-size: 13px;
+    }
+    .detail-row span:first-child { color: #4a5568; }
+    .detail-row span:last-child { font-weight: 600; color: #1a202c; }
+    .tab-bar { border-bottom: 1px solid #e2e8f0; margin-bottom: 16px; display: flex; gap: 4px; }
+    .tab-btn {
+      padding: 8px 20px; border: none; background: transparent; font-size: 14px;
+      cursor: pointer; font-family: inherit;
+    }
+    .tab-btn.active { border-bottom: 2px solid #1a3c6e; color: #1a3c6e; font-weight: 600; }
+    .tab-btn:not(.active) { color: #718096; border-bottom: 2px solid transparent; }
+    table.rtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+    table.rtable th { padding: 6px 8px; font-size: 12px; font-weight: 600; color: #4a5568; border-bottom: 1.5px solid #e2e8f0; }
+    table.rtable td { padding: 5px 8px; border-bottom: 1px solid #f0f4f8; }
+    .ti { width: 52px; padding: 4px 6px; border: 1.5px solid #cbd5e0; border-radius: 5px; font-size: 13px; text-align: center; background: #fff; }
+    .ti:focus { outline: none; border-color: #1a3c6e; }
+    .badge { padding: 3px 10px; border-radius: 20px; color: #fff; font-size: 11px; font-weight: 600; white-space: nowrap; }
+    .sel-row { display: flex; align-items: center; gap: 10px; max-width: 480px; }
+    .origin-bar { font-size: 12px; color: #4a5568; padding: 7px 12px; background: #f7fafc; border-radius: 6px; margin-bottom: 10px; }
+    .err { background: #fff5f5; border: 1px solid #fc8181; border-radius: 8px; padding: 12px 16px; color: #c53030; font-size: 13px; }
+    .help { background: #f7fafc; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #4a5568; margin-top: 14px; }
+    footer { text-align: center; font-size: 11px; color: #a0aec0; margin-top: 32px; }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="title">SN CFTC DGFiP</div>
+    <div class="sub">Syndicat National — Direction Générale des Finances Publiques</div>
+  </div>
+</header>
+<main>
+  <div id="root"></div>
+</main>
+<footer>SN CFTC DGFiP · Outil interne · Tables indicatives — à vérifier avec les arrêtés de reclassement en vigueur</footer>
+
+<script type="text/babel">
+const { useState, useCallback } = React;
+
+const daysBetween = (d1, d2) => Math.round((new Date(d2) - new Date(d1)) / 86400000);
+const addDays = (dateStr, days) => { const d = new Date(dateStr); d.setDate(d.getDate() + Math.round(days)); return d.toLocaleDateString("fr-FR"); };
+const fmt = (j) => {
+  if (j === null || j === undefined || isNaN(j)) return "—";
+  if (j === 0) return "0 jour";
+  const ans = Math.floor(j / 365), mois = Math.floor((j % 365) / 30), jr = j % 365 % 30;
+  return [ans && `${ans} an${ans > 1 ? "s" : ""}`, mois && `${mois} mois`, jr && `${jr} j`].filter(Boolean).join(" ");
+};
+
+const GROUPS = [
+  {
+    label: "Catégorie C → B",
+    tables: [
+      {
+        id: "c1_b", label: "C1 (Agent) → Contrôleur (B)", warn: true,
+        origine: "Agents des finances publiques – Grade C1 (Agent)",
+        destination: "Contrôleurs des finances publiques – Contrôleur",
+        texte: "Décret n°2010-984 du 26 août 2010 et arrêtés de reclassement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 1, pct: 100 },
+          { eo: 4, ed: 2, pct: 0 }, { eo: 5, ed: 2, pct: 50 }, { eo: 6, ed: 3, pct: 0 }, { eo: 7, ed: 3, pct: 50 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 365 }, { e: 4, j: 548 },
+          { e: 5, j: 730 }, { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: null },
+        ],
+      },
+      {
+        id: "c2_b", label: "C2 (Agent principal) → Contrôleur (B)", warn: true,
+        origine: "Agents des finances publiques – Grade C2 (Agent principal)",
+        destination: "Contrôleurs des finances publiques – Contrôleur",
+        texte: "Décret n°2010-984 du 26 août 2010 et arrêtés de reclassement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 2, pct: 0 }, { eo: 4, ed: 2, pct: 50 },
+          { eo: 5, ed: 3, pct: 0 }, { eo: 6, ed: 3, pct: 50 }, { eo: 7, ed: 4, pct: 0 }, { eo: 8, ed: 5, pct: 0 },
+          { eo: 9, ed: 6, pct: 0 }, { eo: 10, ed: 7, pct: 0 }, { eo: 11, ed: 8, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 365 }, { e: 4, j: 548 },
+          { e: 5, j: 730 }, { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: null },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Catégorie B → B (avancement de grade)",
+    tables: [
+      {
+        id: "b_bp", label: "Contrôleur (B) → Contrôleur principal (B)", warn: true,
+        origine: "Contrôleurs des finances publiques – Contrôleur",
+        destination: "Contrôleurs des finances publiques – Contrôleur principal",
+        texte: "Tableau d'avancement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 2, pct: 0 }, { eo: 4, ed: 2, pct: 50 },
+          { eo: 5, ed: 3, pct: 0 }, { eo: 6, ed: 3, pct: 50 }, { eo: 7, ed: 4, pct: 0 }, { eo: 8, ed: 5, pct: 0 },
+          { eo: 9, ed: 6, pct: 0 }, { eo: 10, ed: 7, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 548 }, { e: 3, j: 730 }, { e: 4, j: 730 },
+          { e: 5, j: 730 }, { e: 6, j: 1095 }, { e: 7, j: null },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Catégorie B → A",
+    tables: [
+      {
+        id: "b_a", label: "Contrôleur (B) → Inspecteur (A)", warn: true,
+        origine: "Contrôleurs des finances publiques – Contrôleur",
+        destination: "Inspecteurs des finances publiques – Inspecteur",
+        texte: "Décret n°2009-707 du 16 juin 2009 et arrêtés de reclassement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 75 }, { eo: 3, ed: 2, pct: 0 }, { eo: 4, ed: 2, pct: 75 },
+          { eo: 5, ed: 3, pct: 0 }, { eo: 6, ed: 3, pct: 75 }, { eo: 7, ed: 4, pct: 0 }, { eo: 8, ed: 4, pct: 75 },
+          { eo: 9, ed: 5, pct: 0 }, { eo: 10, ed: 6, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 548 }, { e: 4, j: 730 }, { e: 5, j: 730 },
+          { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: 1095 }, { e: 11, j: null },
+        ],
+      },
+      {
+        id: "bp_a", label: "Contrôleur principal (B) → Inspecteur (A)", warn: true,
+        origine: "Contrôleurs des finances publiques – Contrôleur principal",
+        destination: "Inspecteurs des finances publiques – Inspecteur",
+        texte: "Arrêtés de reclassement – à vérifier",
+        rows: [
+          { eo: 1, ed: 2, pct: 0 }, { eo: 2, ed: 2, pct: 75 }, { eo: 3, ed: 3, pct: 0 },
+          { eo: 4, ed: 4, pct: 0 }, { eo: 5, ed: 5, pct: 0 }, { eo: 6, ed: 6, pct: 0 }, { eo: 7, ed: 7, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 548 }, { e: 4, j: 730 }, { e: 5, j: 730 },
+          { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: 1095 }, { e: 11, j: null },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Catégorie A → A (avancement de grade)",
+    tables: [
+      {
+        id: "a_ap", label: "Inspecteur (A) → Inspecteur principal", warn: true,
+        origine: "Inspecteurs des finances publiques – Inspecteur",
+        destination: "Inspecteurs des finances publiques – Inspecteur principal",
+        texte: "Tableau d'avancement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 1, pct: 100 },
+          { eo: 4, ed: 2, pct: 0 }, { eo: 5, ed: 2, pct: 50 }, { eo: 6, ed: 3, pct: 0 }, { eo: 7, ed: 3, pct: 75 },
+          { eo: 8, ed: 4, pct: 0 }, { eo: 9, ed: 5, pct: 0 }, { eo: 10, ed: 6, pct: 0 }, { eo: 11, ed: 7, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 730 }, { e: 2, j: 730 }, { e: 3, j: 730 }, { e: 4, j: 730 },
+          { e: 5, j: 1095 }, { e: 6, j: 1095 }, { e: 7, j: null },
+        ],
+      },
+      {
+        id: "ap_dd", label: "Inspecteur principal → Directeur divisionnaire", warn: true,
+        origine: "Inspecteurs des finances publiques – Inspecteur principal",
+        destination: "Inspecteurs des finances publiques – Directeur divisionnaire",
+        texte: "Tableau d'avancement – à vérifier",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 75 }, { eo: 3, ed: 2, pct: 0 },
+          { eo: 4, ed: 3, pct: 0 }, { eo: 5, ed: 4, pct: 0 }, { eo: 6, ed: 5, pct: 0 }, { eo: 7, ed: 6, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 730 }, { e: 2, j: 730 }, { e: 3, j: 730 }, { e: 4, j: 1095 }, { e: 5, j: 1095 }, { e: 6, j: null },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Reclassements externes (hors DGFiP)",
+    tables: [
+      {
+        id: "ext_b", label: "Corps B externe → Contrôleur DGFiP", warn: true,
+        origine: "Corps de catégorie B – autre administration (à préciser)",
+        destination: "Contrôleurs des finances publiques – Contrôleur",
+        texte: "Arrêté de reclassement spécifique – à compléter",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 2, pct: 0 },
+          { eo: 4, ed: 2, pct: 50 }, { eo: 5, ed: 3, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 365 }, { e: 4, j: 548 },
+          { e: 5, j: 730 }, { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: null },
+        ],
+      },
+      {
+        id: "ext_a", label: "Corps A externe → Inspecteur DGFiP", warn: true,
+        origine: "Corps de catégorie A – autre administration (à préciser)",
+        destination: "Inspecteurs des finances publiques – Inspecteur",
+        texte: "Arrêté de reclassement spécifique – à compléter",
+        rows: [
+          { eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 2, pct: 0 }, { eo: 3, ed: 3, pct: 0 },
+          { eo: 4, ed: 4, pct: 0 }, { eo: 5, ed: 5, pct: 0 },
+        ],
+        durees: [
+          { e: 1, j: 365 }, { e: 2, j: 365 }, { e: 3, j: 548 }, { e: 4, j: 730 }, { e: 5, j: 730 },
+          { e: 6, j: 730 }, { e: 7, j: 730 }, { e: 8, j: 730 }, { e: 9, j: 1095 }, { e: 10, j: 1095 }, { e: 11, j: null },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Personnalisé",
+    tables: [
+      {
+        id: "custom", label: "Table personnalisée", warn: false,
+        origine: "À définir", destination: "À définir", texte: "",
+        rows: [{ eo: 1, ed: 1, pct: 0 }, { eo: 2, ed: 1, pct: 50 }, { eo: 3, ed: 2, pct: 0 }],
+        durees: [{ e: 1, j: 365 }, { e: 2, j: 548 }, { e: 3, j: null }],
+      },
+    ],
+  },
+];
+
+const ALL_TABLES = GROUPS.flatMap(g => g.tables);
+
+const BADGE_COLORS = {
+  c: "#1a4f8a", b_bp: "#0f6e56", b: "#533490", bp: "#533490",
+  a: "#7a3b1e", ap: "#7a3b1e", ext: "#4a5568", custom: "#888",
+};
+const badgeInfo = (id) => {
+  if (id.startsWith("c")) return { bg: "#1a4f8a", label: "C→B" };
+  if (id === "b_bp") return { bg: "#0f6e56", label: "B→B" };
+  if (id.startsWith("b") || id === "bp_a") return { bg: "#533490", label: "B→A" };
+  if (id.startsWith("a") || id === "ap_dd") return { bg: "#7a3b1e", label: "A→A" };
+  if (id.startsWith("ext")) return { bg: "#4a5568", label: "Externe" };
+  return { bg: "#888", label: "Custom" };
+};
+
+function App() {
+  const [tab, setTab] = useState("calc");
+  const [tables, setTables] = useState(ALL_TABLES);
+  const [selId, setSelId] = useState("c2_b");
+  const [agent, setAgent] = useState({ echelon: "", dateEch: "", dateRecl: "" });
+  const [result, setResult] = useState(null);
+
+  const table = tables.find(t => t.id === selId);
+  const badge = badgeInfo(selId);
+
+  const calc = useCallback(() => {
+    const { echelon, dateEch, dateRecl } = agent;
+    if (!echelon || !dateEch || !dateRecl) { setResult({ err: "Veuillez remplir tous les champs." }); return; }
+    const eo = parseInt(echelon);
+    const row = table.rows.find(r => r.eo === eo);
+    if (!row) { setResult({ err: `Échelon ${eo} absent de la table sélectionnée.` }); return; }
+    const joursAcquis = daysBetween(dateEch, dateRecl);
+    if (joursAcquis < 0) { setResult({ err: "La date de reclassement est antérieure à la prise d'échelon." }); return; }
+    const joursConserves = Math.floor(joursAcquis * row.pct / 100);
+    const dureeInfo = table.durees.find(d => d.e === row.ed);
+    const dureeJ = dureeInfo ? dureeInfo.j : null;
+    let dateProchain = null, joursRestants = null;
+    if (dureeJ !== null) { joursRestants = dureeJ - joursConserves; dateProchain = addDays(dateRecl, joursRestants); }
+    setResult({ eo, ed: row.ed, pct: row.pct, joursAcquis, joursConserves, dureeJ, joursRestants, dateProchain, dateReclFmt: new Date(dateRecl).toLocaleDateString("fr-FR") });
+  }, [agent, table]);
+
+  const updRow = (eo, field, val) => setTables(prev => prev.map(t => t.id !== selId ? t : { ...t, rows: t.rows.map(r => r.eo === eo ? { ...r, [field]: parseInt(val) || 0 } : r) }));
+  const updDuree = (e, val) => setTables(prev => prev.map(t => t.id !== selId ? t : { ...t, durees: t.durees.map(d => d.e === e ? { ...d, j: val === "" ? null : parseInt(val) } : d) }));
+  const addRow = () => {
+    const maxEo = Math.max(...table.rows.map(r => r.eo), 0);
+    const maxE = Math.max(...table.durees.map(d => d.e), 0);
+    setTables(prev => prev.map(t => t.id !== selId ? t : { ...t, rows: [...t.rows, { eo: maxEo + 1, ed: 1, pct: 0 }], durees: [...t.durees, { e: maxE + 1, j: 365 }] }));
+  };
+  const delRow = (eo) => setTables(prev => prev.map(t => t.id !== selId ? t : { ...t, rows: t.rows.filter(r => r.eo !== eo) }));
+
+  return (
+    <div>
+      <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4, color: "#1a202c" }}>Calculateur de reclassement</h2>
+      <p style={{ fontSize: 13, color: "#718096", marginBottom: 20 }}>Fonction publique de l'État — DGFiP · {ALL_TABLES.length - 1} scénarios disponibles</p>
+
+      <div style={{ marginBottom: 14 }}>
+        <label className="lbl">Scénario de reclassement</label>
+        <div className="sel-row">
+          <select value={selId} onChange={e => { setSelId(e.target.value); setResult(null); setAgent({ echelon: "", dateEch: "", dateRecl: "" }); }} style={{ maxWidth: 420 }}>
+            {GROUPS.map(g => (
+              <optgroup key={g.label} label={g.label}>
+                {g.tables.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
+              </optgroup>
+            ))}
+          </select>
+          <span className="badge" style={{ background: badge.bg }}>{badge.label}</span>
+        </div>
+      </div>
+
+      {table && (
+        <div className="origin-bar">
+          <strong>Origine :</strong> {table.origine} &nbsp;·&nbsp; <strong>Destination :</strong> {table.destination}
+        </div>
+      )}
+
+      {table && table.warn && (
+        <div className="warn">⚠️ <strong>Table indicative</strong> — {table.texte}</div>
+      )}
+
+      <div className="tab-bar">
+        {[["calc", "Calculateur"], ["table", "Tables de reclassement"]].map(([k, l]) => (
+          <button key={k} className={`tab-btn${tab === k ? " active" : ""}`} onClick={() => setTab(k)}>{l}</button>
+        ))}
+      </div>
+
+      {tab === "calc" && (
+        <div>
+          <div className="card">
+            <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 14 }}>Situation de l'agent</div>
+            <div className="grid3">
+              <div>
+                <label className="lbl">Échelon actuel</label>
+                <select value={agent.echelon} onChange={e => setAgent(a => ({ ...a, echelon: e.target.value }))}>
+                  <option value="">— choisir —</option>
+                  {table && table.rows.map(r => <option key={r.eo} value={r.eo}>{r.eo}e échelon</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="lbl">Date de prise d'échelon</label>
+                <input type="date" value={agent.dateEch} onChange={e => setAgent(a => ({ ...a, dateEch: e.target.value }))} />
+              </div>
+              <div>
+                <label className="lbl">Date de reclassement</label>
+                <input type="date" value={agent.dateRecl} onChange={e => setAgent(a => ({ ...a, dateRecl: e.target.value }))} />
+              </div>
+            </div>
+            <button className="btn-primary" onClick={calc}>Calculer le reclassement →</button>
+          </div>
+
+          {result && (
+            result.err ? (
+              <div className="err">❌ {result.err}</div>
+            ) : (
+              <div className="card">
+                <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 14 }}>Résultat du reclassement</div>
+                <div className="result-grid">
+                  {[
+                    { label: "Échelon de reclassement", value: `${result.ed}e échelon`, sub: `à compter du ${result.dateReclFmt}`, color: "#1a3c6e" },
+                    { label: "Ancienneté conservée", value: fmt(result.joursConserves), sub: `${result.pct}% de ${fmt(result.joursAcquis)} acquis`, color: "#0f6e56" },
+                    result.dateProchain
+                      ? { label: "Prochain échelon", value: `${result.ed + 1}e échelon`, sub: `le ${result.dateProchain}`, color: "#533490" }
+                      : { label: "Échelon terminal", value: "Sommet de grade", sub: "Pas d'échelon suivant", color: "#888" },
+                  ].map((c, i) => (
+                    <div key={i} className="result-card" style={{ borderLeftColor: c.color }}>
+                      <div className="rc-label">{c.label}</div>
+                      <div className="rc-value" style={{ color: c.color }}>{c.value}</div>
+                      <div className="rc-sub">{c.sub}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ background: "#f7fafc", borderRadius: 8, padding: "12px 14px" }}>
+                  <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 10 }}>Détail du calcul</div>
+                  {[
+                    ["Échelon d'origine", `${result.eo}e échelon`],
+                    ["Ancienneté acquise à la date de reclassement", fmt(result.joursAcquis)],
+                    ["Taux de conservation appliqué", `${result.pct}%`],
+                    ["Ancienneté reprise dans le nouvel échelon", fmt(result.joursConserves)],
+                    ["Durée normale de l'échelon de destination", result.dureeJ ? fmt(result.dureeJ) : "Échelon terminal"],
+                    result.joursRestants !== null ? ["Temps restant avant le prochain échelon", fmt(result.joursRestants)] : null,
+                  ].filter(Boolean).map(([k, v]) => (
+                    <div key={k} className="detail-row">
+                      <span>{k}</span><span>{v}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          )}
+        </div>
+      )}
+
+      {tab === "table" && table && (
+        <div className="card">
+          <div className="grid2">
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6 }}>Tableau de correspondance</div>
+              <p style={{ fontSize: 11, color: "#718096", marginBottom: 8 }}>Éch. orig. → Éch. dest. + % ancienneté conservé</p>
+              <table className="rtable">
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: "left" }}>Origine</th>
+                    <th style={{ textAlign: "center" }}>Destination</th>
+                    <th style={{ textAlign: "center" }}>% conservé</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {table.rows.map(r => (
+                    <tr key={r.eo}>
+                      <td style={{ fontWeight: 600 }}>{r.eo}e</td>
+                      <td style={{ textAlign: "center" }}>
+                        <input type="number" className="ti" value={r.ed} min={1} onChange={e => updRow(r.eo, "ed", e.target.value)} />
+                      </td>
+                      <td style={{ textAlign: "center" }}>
+                        <input type="number" className="ti" value={r.pct} min={0} max={100} onChange={e => updRow(r.eo, "pct", e.target.value)} />
+                      </td>
+                      <td>
+                        <button onClick={() => delRow(r.eo)} style={{ background: "none", border: "none", cursor: "pointer", color: "#a0aec0", fontSize: 14, padding: "2px 6px" }}>✕</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <button className="btn-sm" onClick={addRow}>+ Ajouter un échelon</button>
+            </div>
+            <div>
+              <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6 }}>Durées des échelons (grade destination)</div>
+              <p style={{ fontSize: 11, color: "#718096", marginBottom: 8 }}>Laisser vide = échelon terminal</p>
+              <table className="rtable">
+                <thead>
+                  <tr>
+                    <th style={{ textAlign: "left" }}>Échelon</th>
+                    <th style={{ textAlign: "right" }}>Durée (jours)</th>
+                    <th style={{ textAlign: "right" }}>Équivalent</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {table.durees.map(d => (
+                    <tr key={d.e}>
+                      <td style={{ fontWeight: 600 }}>{d.e}e</td>
+                      <td style={{ textAlign: "right" }}>
+                        <input type="number" className="ti" style={{ width: 70 }} value={d.j !== null && d.j !== undefined ? d.j : ""} placeholder="—" onChange={e => updDuree(d.e, e.target.value)} />
+                      </td>
+                      <td style={{ textAlign: "right", fontSize: 12, color: "#718096" }}>{d.j ? fmt(d.j) : "Terminal"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="help">
+            <strong>Lecture :</strong> Pour chaque échelon d'origine, renseignez l'échelon de destination et le % d'ancienneté conservé (0 % = aucune reprise ; 50 % = moitié conservée ; 100 % = totalité conservée). Durée vide = échelon terminal.
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
